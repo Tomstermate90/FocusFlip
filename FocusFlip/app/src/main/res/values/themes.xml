@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.FocusFlip" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/secondary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="Theme.FocusFlip.Splash" parent="Theme.FocusFlip">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/background</item>
+    </style>
+
+    <style name="Widget.FocusFlip.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">20dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+    </style>
+
+    <style name="Widget.FocusFlip.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/text_on_primary</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="TextAppearance.FocusFlip.Timer" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">72sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+</resources>

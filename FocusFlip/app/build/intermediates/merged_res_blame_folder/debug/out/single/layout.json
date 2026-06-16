@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-mergeDebugResources-31:\\layout\\activity_settings.xml",
+        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_settings.xml"
+    },
+    {
+        "merged": "com.focusflip.app-mergeDebugResources-31:/layout/activity_splash.xml",
+        "source": "com.focusflip.app-main-34:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.focusflip.app-mergeDebugResources-31:/layout/activity_statistics.xml",
+        "source": "com.focusflip.app-main-34:/layout/activity_statistics.xml"
+    },
+    {
+        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-mergeDebugResources-31:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-mergeDebugResources-31:\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "com.focusflip.app-mergeDebugResources-31:/layout/activity_main.xml",
+        "source": "com.focusflip.app-main-34:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-mergeDebugResources-31:\\layout\\activity_statistics.xml",
+        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_statistics.xml"
+    }
+]

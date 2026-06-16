@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#6C63FF</color>
+    <color name="primary_dark">#4B44CC</color>
+    <color name="primary_light">#9D96FF</color>
+
+    <color name="secondary">#00D9A3</color>
+    <color name="secondary_dark">#00A87E</color>
+    <color name="secondary_light">#4DFFCC</color>
+
+    <color name="background">#0F0F1A</color>
+    <color name="surface">#1A1A2E</color>
+    <color name="surface_variant">#16213E</color>
+    <color name="surface_elevated">#1F1F35</color>
+
+    <color name="text_primary">#F0F0FF</color>
+    <color name="text_secondary">#9090B0</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <color name="success">#00D9A3</color>
+    <color name="warning">#FFB830</color>
+    <color name="error">#FF5C7A</color>
+
+    <color name="focus_active">#00D9A3</color>
+    <color name="focus_paused">#FFB830</color>
+    <color name="focus_inactive">#9090B0</color>
+
+    <color name="chart_goal">#2A2A4A</color>
+    <color name="chart_actual">#6C63FF</color>
+    <color name="chart_exceeded">#00D9A3</color>
+
+    <color name="card_border">#2A2A4A</color>
+    <color name="divider">#1E1E3A</color>
+</resources>

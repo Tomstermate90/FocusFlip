@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#0F0F1A</color>
+    <color name="card_border">#2A2A4A</color>
+    <color name="chart_actual">#6C63FF</color>
+    <color name="chart_exceeded">#00D9A3</color>
+    <color name="chart_goal">#2A2A4A</color>
+    <color name="divider">#1E1E3A</color>
+    <color name="error">#FF5C7A</color>
+    <color name="focus_active">#00D9A3</color>
+    <color name="focus_inactive">#9090B0</color>
+    <color name="focus_paused">#FFB830</color>
+    <color name="primary">#6C63FF</color>
+    <color name="primary_dark">#4B44CC</color>
+    <color name="primary_light">#9D96FF</color>
+    <color name="secondary">#00D9A3</color>
+    <color name="secondary_dark">#00A87E</color>
+    <color name="secondary_light">#4DFFCC</color>
+    <color name="success">#00D9A3</color>
+    <color name="surface">#1A1A2E</color>
+    <color name="surface_elevated">#1F1F35</color>
+    <color name="surface_variant">#16213E</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_primary">#F0F0FF</color>
+    <color name="text_secondary">#9090B0</color>
+    <color name="warning">#FFB830</color>
+    <string name="app_name">FocusFlip</string>
+    <string name="app_name_hebrew">היפוך לריכוז</string>
+    <string name="average_session">ממוצע סשן</string>
+    <string name="best_day">היום הטוב ביותר</string>
+    <string name="cancel">ביטול</string>
+    <string name="checking_permissions">בודק הרשאות...</string>
+    <string name="daily_goal">יעד יומי</string>
+    <string name="daily_goal_hint">הגדר את יעד הלמידה היומי שלך</string>
+    <string name="daily_goal_setting">יעד למידה יומי</string>
+    <string name="days">ימים</string>
+    <string name="distractions_blocked">הסחות נחסמו</string>
+    <string name="distractions_detected">הסחות דעת שזוהו</string>
+    <string name="error">שגיאה</string>
+    <string name="flip_to_focus">הפוך את המכשיר כדי להתחיל סשן ריכוז</string>
+    <string name="focus_active">סשן ריכוז פעיל</string>
+    <string name="focus_channel_description">התראות בזמן סשן למידה פעיל</string>
+    <string name="focus_channel_name">סשן ריכוז</string>
+    <string name="focus_notification_text">למדת %1$s | יעד: %2$s</string>
+    <string name="focus_notification_title">סשן ריכוז פעיל</string>
+    <string name="focus_paused">סשן מושהה - המכשיר הופנה</string>
+    <string name="goal_achieved_text">השלמת את יעד הלמידה היומי שלך!</string>
+    <string name="goal_achieved_title">כל הכבוד!</string>
+    <string name="goal_channel_description">תזכורות להשלמת יעד הלמידה היומי</string>
+    <string name="goal_channel_name">תזכורות יעד</string>
+    <string name="goal_reminder_text">נותרו לך %1$s להשלמת היעד. בוא נסיים את זה!</string>
+    <string name="goal_reminder_title">לא השלמת את היעד היומי!</string>
+    <string name="goal_vs_actual">יעד מול ביצוע</string>
+    <string name="goals_achieved">יעדים שהושגו</string>
+    <string name="grant_permissions">אשר הרשאות</string>
+    <string name="hours">שעות</string>
+    <string name="loading">טוען...</string>
+    <string name="minutes">דקות</string>
+    <string name="notifications_blocked">התראות שנחסמו</string>
+    <string name="ok">אישור</string>
+    <string name="permission_required">נדרשות הרשאות להפעלת האפליקציה</string>
+    <string name="reminder_time">שעת תזכורת</string>
+    <string name="reminder_time_hint">באיזו שעה לבדוק את היעד?</string>
+    <string name="save_settings">שמור הגדרות</string>
+    <string name="settings">הגדרות</string>
+    <string name="settings_saved">ההגדרות נשמרו בהצלחה</string>
+    <string name="silence_all">השתק הכל</string>
+    <string name="silence_mode">מצב השתקה</string>
+    <string name="silence_notifications">השתק התראות בלבד</string>
+    <string name="splash_subtitle">Smart Study Assistant</string>
+    <string name="splash_title">FocusFlip</string>
+    <string name="start_session">התחל סשן</string>
+    <string name="statistics">סטטיסטיקות</string>
+    <string name="stop_session">עצור סשן</string>
+    <string name="streak">רצף ימים</string>
+    <string name="time_studied">זמן למידה</string>
+    <string name="today_progress">התקדמות היום</string>
+    <string name="total_study_time">סה״כ זמן למידה</string>
+    <string name="vibrate_only">רטט בלבד</string>
+    <string name="weekly_overview">סקירה שבועית</string>
+    <style name="TextAppearance.FocusFlip.Timer" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">72sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+    <style name="Theme.FocusFlip" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/secondary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+    <style name="Theme.FocusFlip.Splash" parent="Theme.FocusFlip">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/background</item>
+    </style>
+    <style name="Widget.FocusFlip.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/text_on_primary</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+    <style name="Widget.FocusFlip.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">20dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+    </style>
+</resources>
