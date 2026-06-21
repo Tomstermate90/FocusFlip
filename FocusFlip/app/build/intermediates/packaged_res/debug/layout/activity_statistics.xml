@@ -79,7 +79,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="יעד"
+                            android:text="@string/chart_label_goal"
                             android:textSize="11sp"
                             android:textColor="@color/text_secondary"
                             android:layout_marginEnd="16dp" />
@@ -94,7 +94,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="בפועל"
+                            android:text="@string/chart_label_actual"
                             android:textSize="11sp"
                             android:textColor="@color/text_secondary" />
 
@@ -144,7 +144,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="0 שעות"
+                            android:text="@string/default_zero"
                             android:textSize="17sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="sans-serif-medium" />
@@ -189,7 +189,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="0"
+                            android:text="@string/default_zero"
                             android:textSize="17sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="sans-serif-medium" />
@@ -243,7 +243,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="0"
+                            android:text="@string/default_zero"
                             android:textSize="17sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="sans-serif-medium" />
@@ -288,7 +288,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="0"
+                            android:text="@string/default_zero"
                             android:textSize="17sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="sans-serif-medium" />
@@ -342,7 +342,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="00:00"
+                            android:text="@string/default_timer"
                             android:textSize="17sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="sans-serif-medium" />
@@ -387,7 +387,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="0 ימים"
+                            android:text="@string/default_zero"
                             android:textSize="17sp"
                             android:textColor="@color/text_primary"
                             android:fontFamily="sans-serif-medium" />

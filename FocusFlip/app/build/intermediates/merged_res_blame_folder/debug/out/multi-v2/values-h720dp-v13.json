@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.focusflip.app-mergeDebugResources-30:/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "com.alex_lior_tomer.focusflip.app-mergeDebugResources-30:/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apoli\\.gradle\\caches\\transforms-3\\3c3e8d87979f80077854f6234c4ddaef\\transformed\\appcompat-1.6.1\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-3\\3c3e8d87979f80077854f6234c4ddaef\\transformed\\appcompat-1.6.1\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

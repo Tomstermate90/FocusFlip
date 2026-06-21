@@ -1,69 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FocusFlip</string>
-    <string name="app_name_hebrew">היפוך לריכוז</string>
+    <string name="app_name_hebrew">FocusFlip</string>
     
     <!-- Splash Screen -->
     <string name="splash_title">FocusFlip</string>
     <string name="splash_subtitle">Smart Study Assistant</string>
-    <string name="checking_permissions">בודק הרשאות...</string>
-    <string name="permission_required">נדרשות הרשאות להפעלת האפליקציה</string>
-    <string name="grant_permissions">אשר הרשאות</string>
+    <string name="checking_permissions">Checking permissions...</string>
+    <string name="permission_required">Permissions are required to run the app</string>
+    <string name="grant_permissions">Grant Permissions</string>
     
     <!-- Main Screen -->
-    <string name="flip_to_focus">הפוך את המכשיר כדי להתחיל סשן ריכוז</string>
-    <string name="focus_active">סשן ריכוז פעיל</string>
-    <string name="focus_paused">סשן מושהה - המכשיר הופנה</string>
-    <string name="today_progress">התקדמות היום</string>
-    <string name="daily_goal">יעד יומי</string>
-    <string name="time_studied">זמן למידה</string>
-    <string name="distractions_blocked">הסחות נחסמו</string>
-    <string name="start_session">התחל סשן</string>
-    <string name="stop_session">עצור סשן</string>
+    <string name="flip_to_focus">Flip your device to start a focus session</string>
+    <string name="focus_active">Focus Session Active</string>
+    <string name="focus_paused">Session Paused - Device Flipped Up</string>
+    <string name="today_progress">Today\'s Progress</string>
+    <string name="daily_goal">Daily Goal</string>
+    <string name="time_studied">Time Studied</string>
+    <string name="distractions_blocked">Distractions Blocked</string>
+    <string name="start_session">Start Session</string>
+    <string name="stop_session">Stop Session</string>
     
     <!-- Settings Screen -->
-    <string name="settings">הגדרות</string>
-    <string name="daily_goal_setting">יעד למידה יומי</string>
-    <string name="daily_goal_hint">הגדר את יעד הלמידה היומי שלך</string>
-    <string name="minutes">דקות</string>
-    <string name="hours">שעות</string>
-    <string name="reminder_time">שעת תזכורת</string>
-    <string name="reminder_time_hint">באיזו שעה לבדוק את היעד?</string>
-    <string name="silence_mode">מצב השתקה</string>
-    <string name="silence_all">השתק הכל</string>
-    <string name="silence_notifications">השתק התראות בלבד</string>
-    <string name="vibrate_only">רטט בלבד</string>
-    <string name="save_settings">שמור הגדרות</string>
-    <string name="settings_saved">ההגדרות נשמרו בהצלחה</string>
-    
+    <string name="settings">Settings</string>
+    <string name="daily_goal_setting">Daily Study Goal</string>
+    <string name="daily_goal_hint">Set your daily study goal</string>
+    <string name="minutes">Minutes</string>
+    <string name="hours">Hours</string>
+    <string name="reminder_time">Reminder Time</string>
+    <string name="reminder_time_hint">When to check the goal?</string>
+    <string name="silence_mode">Silence Mode</string>
+    <string name="silence_all">Silence All</string>
+    <string name="silence_notifications">Notifications Only</string>
+    <string name="vibrate_only">Vibrate Only</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="settings_saved">Settings saved successfully</string>
+    <string name="language">Language</string>
+    <string name="select_language">Select app language</string>
+    <string name="english">English</string>
+    <string name="hebrew">Hebrew</string>
+
     <!-- Statistics Screen -->
-    <string name="statistics">סטטיסטיקות</string>
-    <string name="weekly_overview">סקירה שבועית</string>
-    <string name="goal_vs_actual">יעד מול ביצוע</string>
-    <string name="total_study_time">סה״כ זמן למידה</string>
-    <string name="goals_achieved">יעדים שהושגו</string>
-    <string name="notifications_blocked">התראות שנחסמו</string>
-    <string name="distractions_detected">הסחות דעת שזוהו</string>
-    <string name="average_session">ממוצע סשן</string>
-    <string name="best_day">היום הטוב ביותר</string>
-    <string name="streak">רצף ימים</string>
-    <string name="days">ימים</string>
+    <string name="statistics">Statistics</string>
+    <string name="weekly_overview">Weekly Overview</string>
+    <string name="goal_vs_actual">Goal vs Actual</string>
+    <string name="total_study_time">Total Study Time</string>
+    <string name="goals_achieved">Goals Achieved</string>
+    <string name="notifications_blocked">Notifications Blocked</string>
+    <string name="distractions_detected">Distractions Detected</string>
+    <string name="average_session">Average Session</string>
+    <string name="best_day">Best Day</string>
+    <string name="streak">Day Streak</string>
+    <string name="days">Days</string>
     
     <!-- Notifications -->
-    <string name="focus_channel_name">סשן ריכוז</string>
-    <string name="focus_channel_description">התראות בזמן סשן למידה פעיל</string>
-    <string name="goal_channel_name">תזכורות יעד</string>
-    <string name="goal_channel_description">תזכורות להשלמת יעד הלמידה היומי</string>
-    <string name="focus_notification_title">סשן ריכוז פעיל</string>
-    <string name="focus_notification_text">למדת %1$s | יעד: %2$s</string>
-    <string name="goal_reminder_title">לא השלמת את היעד היומי!</string>
-    <string name="goal_reminder_text">נותרו לך %1$s להשלמת היעד. בוא נסיים את זה!</string>
-    <string name="goal_achieved_title">כל הכבוד!</string>
-    <string name="goal_achieved_text">השלמת את יעד הלמידה היומי שלך!</string>
+    <string name="focus_channel_name">Focus Session</string>
+    <string name="focus_channel_description">Notifications during an active study session</string>
+    <string name="goal_channel_name">Goal Reminders</string>
+    <string name="goal_channel_description">Reminders to complete your daily study goal</string>
+    <string name="focus_notification_title">Focus Session Active</string>
+    <string name="focus_notification_text">Studied %1$s | Goal: %2$s</string>
+    <string name="goal_reminder_title">Daily Goal Not Completed!</string>
+    <string name="goal_reminder_text">You have %1$s left to reach your goal. Let\'s finish it!</string>
+    <string name="goal_achieved_title">Well Done!</string>
+    <string name="goal_achieved_text">You have completed your daily study goal!</string>
     
     <!-- General -->
-    <string name="ok">אישור</string>
-    <string name="cancel">ביטול</string>
-    <string name="error">שגיאה</string>
-    <string name="loading">טוען...</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="error">Error</string>
+    <string name="loading">Loading...</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="exit_confirm_title">Confirm Exit</string>
+    <string name="exit_confirm_msg">Are you sure you want to exit? Active session will stop.</string>
+    <string name="about_title">About FocusFlip</string>
+    <string name="about_message">Developers: Alex Politsan, Lior Tvito, Tomer Levi\nVersion: 1.0\nAPI Level: 30\nMobile App Development Workshop 2026</string>
+    <string name="dnd_permission_title">Do Not Disturb Permission</string>
+    <string name="dnd_permission_msg">The app needs access to \'Do Not Disturb\' mode to silence notifications while studying.</string>
+    <string name="notification_listener_title">Notification Access</string>
+    <string name="notification_listener_msg">The app needs notification access to count distractions and help you focus.</string>
+    <string name="starting">Starting...</string>
+    <string name="hours_minutes_format">%1$d Hours %2$d Minutes</string>
+    <string name="hours_format">%1$d Hours</string>
+    <string name="minutes_format">%1$d Minutes</string>
+    <string name="chart_label_goal">Goal</string>
+    <string name="chart_label_actual">Actual</string>
+    <string name="default_timer">00:00</string>
+    <string name="default_zero">0</string>
+    <string name="today_time">Today\'s Time</string>
+    <string name="distractions">Distractions</string>
+    <string name="percentage_format" translatable="false">%1$d%%</string>
+    <string name="less_than_minute">Less than a minute</string>
+    <string name="alarm_permission_title">Schedule Exact Alarm Permission</string>
+    <string name="alarm_permission_msg">The app needs permission to schedule exact alarms to remind you about your study goal.</string>
+
+<!-- English strings.xml -->
+    <!-- <string name="about_message">Developers: Alex Polisan, Lior Tvito, Tomer Levi\nVersion: 1.0\nAPI
+        Level: 30\nMobile App Development Workshop 2026
+    </string> -->
+
+
+<!-- Hebrew strings.xml -->
+    <!-- <string name="about_message">מפתחים: תומר לוי, אלכס פוליסן, ליאור טוויטו\nגרסה: 1.0\nAPI Level:
+        30\nסדנה לפיתוח אפליקציות מובייל 2026
+    </string> -->
 </resources>

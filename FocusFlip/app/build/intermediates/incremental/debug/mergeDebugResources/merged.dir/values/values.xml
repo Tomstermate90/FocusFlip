@@ -1987,12 +1987,17 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with <ns2:g example="Mail" id="application_name">%s</ns2:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="about">About</string>
+    <string name="about_message">Developers: Alex Politsan, Lior Tvito, Tomer Levi\nVersion: 1.0\nAPI Level: 30\nMobile App Development Workshop 2026</string>
+    <string name="about_title">About FocusFlip</string>
+    <string name="alarm_permission_msg">The app needs permission to schedule exact alarms to remind you about your study goal.</string>
+    <string name="alarm_permission_title">Schedule Exact Alarm Permission</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">FocusFlip</string>
-    <string name="app_name_hebrew">היפוך לריכוז</string>
+    <string name="app_name_hebrew">FocusFlip</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="average_session">ממוצע סשן</string>
-    <string name="best_day">היום הטוב ביותר</string>
+    <string name="average_session">Average Session</string>
+    <string name="best_day">Best Day</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
     <string description="A description of an accessibility action to collapse the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_collapse">Collapse the bottom sheet</string>
     <string description="A description of an accessibility action to expand the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_expand">Expand the bottom sheet</string>
@@ -2006,47 +2011,63 @@
     <string name="call_notification_incoming_text">Incoming call</string>
     <string name="call_notification_ongoing_text">Ongoing call</string>
     <string name="call_notification_screening_text">Screening an incoming call</string>
-    <string name="cancel">ביטול</string>
+    <string name="cancel">Cancel</string>
     <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
-    <string name="checking_permissions">בודק הרשאות...</string>
+    <string name="chart_label_actual">Actual</string>
+    <string name="chart_label_goal">Goal</string>
+    <string name="checking_permissions">Checking permissions...</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
-    <string name="daily_goal">יעד יומי</string>
-    <string name="daily_goal_hint">הגדר את יעד הלמידה היומי שלך</string>
-    <string name="daily_goal_setting">יעד למידה יומי</string>
-    <string name="days">ימים</string>
-    <string name="distractions_blocked">הסחות נחסמו</string>
-    <string name="distractions_detected">הסחות דעת שזוהו</string>
-    <string name="error">שגיאה</string>
+    <string name="daily_goal">Daily Goal</string>
+    <string name="daily_goal_hint">Set your daily study goal</string>
+    <string name="daily_goal_setting">Daily Study Goal</string>
+    <string name="days">Days</string>
+    <string name="default_timer">00:00</string>
+    <string name="default_zero">0</string>
+    <string name="distractions">Distractions</string>
+    <string name="distractions_blocked">Distractions Blocked</string>
+    <string name="distractions_detected">Distractions Detected</string>
+    <string name="dnd_permission_msg">The app needs access to \'Do Not Disturb\' mode to silence notifications while studying.</string>
+    <string name="dnd_permission_title">Do Not Disturb Permission</string>
+    <string name="english">English</string>
+    <string name="error">Error</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
     <string name="error_icon_content_description">Error</string>
+    <string name="exit">Exit</string>
+    <string name="exit_confirm_msg">Are you sure you want to exit? Active session will stop.</string>
+    <string name="exit_confirm_title">Confirm Exit</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
-    <string name="flip_to_focus">הפוך את המכשיר כדי להתחיל סשן ריכוז</string>
-    <string name="focus_active">סשן ריכוז פעיל</string>
-    <string name="focus_channel_description">התראות בזמן סשן למידה פעיל</string>
-    <string name="focus_channel_name">סשן ריכוז</string>
-    <string name="focus_notification_text">למדת %1$s | יעד: %2$s</string>
-    <string name="focus_notification_title">סשן ריכוז פעיל</string>
-    <string name="focus_paused">סשן מושהה - המכשיר הופנה</string>
-    <string name="goal_achieved_text">השלמת את יעד הלמידה היומי שלך!</string>
-    <string name="goal_achieved_title">כל הכבוד!</string>
-    <string name="goal_channel_description">תזכורות להשלמת יעד הלמידה היומי</string>
-    <string name="goal_channel_name">תזכורות יעד</string>
-    <string name="goal_reminder_text">נותרו לך %1$s להשלמת היעד. בוא נסיים את זה!</string>
-    <string name="goal_reminder_title">לא השלמת את היעד היומי!</string>
-    <string name="goal_vs_actual">יעד מול ביצוע</string>
-    <string name="goals_achieved">יעדים שהושגו</string>
-    <string name="grant_permissions">אשר הרשאות</string>
+    <string name="flip_to_focus">Flip your device to start a focus session</string>
+    <string name="focus_active">Focus Session Active</string>
+    <string name="focus_channel_description">Notifications during an active study session</string>
+    <string name="focus_channel_name">Focus Session</string>
+    <string name="focus_notification_text">Studied %1$s | Goal: %2$s</string>
+    <string name="focus_notification_title">Focus Session Active</string>
+    <string name="focus_paused">Session Paused - Device Flipped Up</string>
+    <string name="goal_achieved_text">You have completed your daily study goal!</string>
+    <string name="goal_achieved_title">Well Done!</string>
+    <string name="goal_channel_description">Reminders to complete your daily study goal</string>
+    <string name="goal_channel_name">Goal Reminders</string>
+    <string name="goal_reminder_text">You have %1$s left to reach your goal. Let\'s finish it!</string>
+    <string name="goal_reminder_title">Daily Goal Not Completed!</string>
+    <string name="goal_vs_actual">Goal vs Actual</string>
+    <string name="goals_achieved">Goals Achieved</string>
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="hebrew">Hebrew</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
-    <string name="hours">שעות</string>
+    <string name="hours">Hours</string>
+    <string name="hours_format">%1$d Hours</string>
+    <string name="hours_minutes_format">%1$d Hours %2$d Minutes</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="item_view_role_description">Tab</string>
-    <string name="loading">טוען...</string>
+    <string name="language">Language</string>
+    <string name="less_than_minute">Less than a minute</string>
+    <string name="loading">Loading...</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
     <string name="m3_ref_typeface_brand_medium" translatable="false">sans-serif-medium</string>
     <string name="m3_ref_typeface_brand_regular" translatable="false">sans-serif</string>
@@ -2085,7 +2106,8 @@
     <string description="Suffix for time in 12-hour standard, after noon. [CHAR_LIMIT=2]" name="material_timepicker_pm">PM</string>
     <string description="Title for the dialog with a time picker. [CHAR_LIMIT=32]" name="material_timepicker_select_time">Select time</string>
     <string name="material_timepicker_text_input_mode_description">Switch to text input mode for the time input.</string>
-    <string name="minutes">דקות</string>
+    <string name="minutes">Minutes</string>
+    <string name="minutes_format">%1$d Minutes</string>
     <string description="Content description for new notification (no number count) [CHAR_LIMIT=NONE]" name="mtrl_badge_numberless_content_description">New notification</string>
     <string name="mtrl_checkbox_button_icon_path_checked" translatable="false">M14,18.2 11.4,15.6 10,17 14,21 22,13 20.6,11.6z</string>
     <string name="mtrl_checkbox_button_icon_path_group_name" translatable="false">icon</string>
@@ -2154,42 +2176,48 @@
     <string name="mtrl_switch_track_path" translatable="false">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
-    <string name="notifications_blocked">התראות שנחסמו</string>
-    <string name="ok">אישור</string>
+    <string name="notification_listener_msg">The app needs notification access to count distractions and help you focus.</string>
+    <string name="notification_listener_title">Notification Access</string>
+    <string name="notifications_blocked">Notifications Blocked</string>
+    <string name="ok">OK</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
-    <string name="permission_required">נדרשות הרשאות להפעלת האפליקציה</string>
-    <string name="reminder_time">שעת תזכורת</string>
-    <string name="reminder_time_hint">באיזו שעה לבדוק את היעד?</string>
-    <string name="save_settings">שמור הגדרות</string>
+    <string name="percentage_format">%1$d%%</string>
+    <string name="permission_required">Permissions are required to run the app</string>
+    <string name="reminder_time">Reminder Time</string>
+    <string name="reminder_time_hint">When to check the goal?</string>
+    <string name="save_settings">Save Settings</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
   </string>
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
-    <string name="settings">הגדרות</string>
-    <string name="settings_saved">ההגדרות נשמרו בהצלחה</string>
+    <string name="select_language">Select app language</string>
+    <string name="settings">Settings</string>
+    <string name="settings_saved">Settings saved successfully</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
-    <string name="silence_all">השתק הכל</string>
-    <string name="silence_mode">מצב השתקה</string>
-    <string name="silence_notifications">השתק התראות בלבד</string>
+    <string name="silence_all">Silence All</string>
+    <string name="silence_mode">Silence Mode</string>
+    <string name="silence_notifications">Notifications Only</string>
     <string name="splash_subtitle">Smart Study Assistant</string>
     <string name="splash_title">FocusFlip</string>
-    <string name="start_session">התחל סשן</string>
-    <string name="statistics">סטטיסטיקות</string>
+    <string name="start_session">Start Session</string>
+    <string name="starting">Starting...</string>
+    <string name="statistics">Statistics</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="stop_session">עצור סשן</string>
-    <string name="streak">רצף ימים</string>
-    <string name="time_studied">זמן למידה</string>
-    <string name="today_progress">התקדמות היום</string>
-    <string name="total_study_time">סה״כ זמן למידה</string>
-    <string name="vibrate_only">רטט בלבד</string>
-    <string name="weekly_overview">סקירה שבועית</string>
+    <string name="stop_session">Stop Session</string>
+    <string name="streak">Day Streak</string>
+    <string name="time_studied">Time Studied</string>
+    <string name="today_progress">Today\'s Progress</string>
+    <string name="today_time">Today\'s Time</string>
+    <string name="total_study_time">Total Study Time</string>
+    <string name="vibrate_only">Vibrate Only</string>
+    <string name="weekly_overview">Weekly Overview</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -6457,6 +6485,8 @@
     <item name="windowNoTitle">true</item>
   </style>
     <style name="Theme.FocusFlip" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/secondary</item>

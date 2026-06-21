@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.focusflip.app"
+    package="com.alex_lior_tomer.focusflip"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="26"
-        android:targetSdkVersion="34" />
+        android:targetSdkVersion="30" />
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -25,10 +21,10 @@
         android:required="true" />
 
     <permission
-        android:name="com.focusflip.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.alex_lior_tomer.focusflip.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.focusflip.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.alex_lior_tomer.focusflip.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -44,7 +40,7 @@
 
         <!-- Splash Activity -->
         <activity
-            android:name="com.focusflip.app.activities.SplashActivity"
+            android:name="com.alex_lior_tomer.focusflip.activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.FocusFlip.Splash" >
             <intent-filter>
@@ -56,36 +52,31 @@
 
         <!-- Main Activity -->
         <activity
-            android:name="com.focusflip.app.activities.MainActivity"
+            android:name="com.alex_lior_tomer.focusflip.activities.MainActivity"
             android:exported="false"
             android:launchMode="singleTop" />
 
         <!-- Settings Activity -->
         <activity
-            android:name="com.focusflip.app.activities.SettingsActivity"
+            android:name="com.alex_lior_tomer.focusflip.activities.SettingsActivity"
             android:exported="false"
-            android:parentActivityName="com.focusflip.app.activities.MainActivity" />
+            android:parentActivityName="com.alex_lior_tomer.focusflip.activities.MainActivity" />
 
         <!-- Statistics Activity -->
         <activity
-            android:name="com.focusflip.app.activities.StatisticsActivity"
+            android:name="com.alex_lior_tomer.focusflip.activities.StatisticsActivity"
             android:exported="false"
-            android:parentActivityName="com.focusflip.app.activities.MainActivity" />
+            android:parentActivityName="com.alex_lior_tomer.focusflip.activities.MainActivity" />
 
         <!-- Focus Foreground Service -->
         <service
-            android:name="com.focusflip.app.services.FocusService"
+            android:name="com.alex_lior_tomer.focusflip.services.FocusService"
             android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="specialUse" >
-            <property
-                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="focus_tracking" />
-        </service>
+            android:exported="false" />
 
         <!-- Notification Listener Service -->
         <service
-            android:name="com.focusflip.app.services.NotificationMonitorService"
+            android:name="com.alex_lior_tomer.focusflip.services.NotificationMonitorService"
             android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
             <intent-filter>
@@ -95,7 +86,7 @@
 
         <!-- Screen State Receiver -->
         <receiver
-            android:name="com.focusflip.app.receivers.ScreenStateReceiver"
+            android:name="com.alex_lior_tomer.focusflip.receivers.ScreenStateReceiver"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
@@ -106,17 +97,17 @@
 
         <!-- Goal Check Alarm Receiver -->
         <receiver
-            android:name="com.focusflip.app.receivers.GoalCheckReceiver"
+            android:name="com.alex_lior_tomer.focusflip.receivers.GoalCheckReceiver"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
-                <action android:name="com.focusflip.ACTION_CHECK_GOAL" />
+                <action android:name="com.alex_lior_tomer.focusflip.ACTION_CHECK_GOAL" />
             </intent-filter>
         </receiver>
 
         <!-- Boot Receiver -->
         <receiver
-            android:name="com.focusflip.app.receivers.BootReceiver"
+            android:name="com.alex_lior_tomer.focusflip.receivers.BootReceiver"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
@@ -126,7 +117,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.focusflip.app.androidx-startup"
+            android:authorities="com.alex_lior_tomer.focusflip.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"

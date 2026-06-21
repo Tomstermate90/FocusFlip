@@ -1,146 +1,142 @@
 [
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_goal.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_goal.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_streak.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_streak.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_average.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_average.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\layout_activity_statistics.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_statistics.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\layout_activity_settings.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_settings.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_phone_down.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_phone_down.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_timer.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_timer.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_notification_off.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_notification_off.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_stats.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_stats.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\anim_pulse.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\anim\\pulse.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_goal.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_goal.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_progress_bar_drawable.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\progress_bar_drawable.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_focus.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_focus.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "com.alex_lior_tomer.focusflip.app-merged_res-32:/layout_activity_main.xml.flat",
+        "source": "com.alex_lior_tomer.focusflip.app-main-34:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_phone_up.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_phone_up.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\menu_main_menu.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\menu\\main_menu.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_glow_circle.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\glow_circle.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_phone_up.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_phone_up.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_stats.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_stats.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.focusflip.app-merged_res-32:/layout_activity_statistics.xml.flat",
-        "source": "com.focusflip.app-main-34:/layout/activity_statistics.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_settings.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_settings.xml"
     },
     {
-        "merged": "com.focusflip.app-merged_res-32:/drawable_progress_bar_drawable.xml.flat",
-        "source": "com.focusflip.app-main-34:/drawable/progress_bar_drawable.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_average.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_average.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_streak.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_streak.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_focus.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_focus.xml"
+        "merged": "com.alex_lior_tomer.focusflip.app-merged_res-32:/layout_activity_settings.xml.flat",
+        "source": "com.alex_lior_tomer.focusflip.app-main-34:/layout/activity_settings.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\layout_activity_settings.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\layout\\activity_settings.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_phone_down.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_phone_down.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_notification.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_notification.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_notification.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_notification.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.focusflip.app-merged_res-32:/drawable_glow_circle.xml.flat",
-        "source": "com.focusflip.app-main-34:/drawable/glow_circle.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_timer.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_timer.xml"
     },
     {
-        "merged": "com.focusflip.app-merged_res-32:/layout_activity_splash.xml.flat",
-        "source": "com.focusflip.app-main-34:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_progress_bar_drawable.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\progress_bar_drawable.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\layout_activity_splash.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\layout\\activity_splash.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.focusflip.app-merged_res-32:/layout_activity_main.xml.flat",
-        "source": "com.focusflip.app-main-34:/layout/activity_main.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\layout_activity_statistics.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\layout\\activity_statistics.xml"
     },
     {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\anim_pulse.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\anim\\pulse.xml"
-    },
-    {
-        "merged": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-merged_res-32:\\drawable_ic_settings.xml.flat",
-        "source": "C:\\Users\\apoli\\.gradle\\daemon\\8.2\\com.focusflip.app-main-34:\\drawable\\ic_settings.xml"
+        "merged": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-merged_res-32:\\drawable_ic_notification_off.xml.flat",
+        "source": "C:\\Users\\Lenovo\\.gradle\\daemon\\8.2\\com.alex_lior_tomer.focusflip.app-main-34:\\drawable\\ic_notification_off.xml"
     }
 ]

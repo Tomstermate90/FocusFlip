@@ -1,4 +1,4 @@
-com.focusflip.app
+com.alex_lior_tomer.focusflip
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -3165,6 +3165,7 @@ id accessibility_custom_action_9
 id actionDown
 id actionDownUp
 id actionUp
+id action_about
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -3175,12 +3176,14 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_exit
 id action_image
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_settings
 id action_text
 id actions
 id activity_chooser_view_content
@@ -3353,6 +3356,7 @@ id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
 id labeled
+id languageGroup
 id layout
 id left
 id leftToRight
@@ -3482,6 +3486,8 @@ id progressBar
 id progress_circular
 id progress_horizontal
 id radio
+id radioEnglish
+id radioHebrew
 id radioSilenceAll
 id radioSilenceNotifications
 id radioVibrateOnly
@@ -3521,7 +3527,6 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
-id settingsButton
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3841,6 +3846,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+menu main_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
@@ -3871,6 +3877,11 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string about
+string about_message
+string about_title
+string alarm_permission_msg
+string alarm_permission_title
 string androidx_startup
 string app_name
 string app_name_hebrew
@@ -3894,17 +3905,28 @@ string cancel
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string chart_label_actual
+string chart_label_goal
 string checking_permissions
 string clear_text_end_icon_content_description
 string daily_goal
 string daily_goal_hint
 string daily_goal_setting
 string days
+string default_timer
+string default_zero
+string distractions
 string distractions_blocked
 string distractions_detected
+string dnd_permission_msg
+string dnd_permission_title
+string english
 string error
 string error_a11y_label
 string error_icon_content_description
+string exit
+string exit_confirm_msg
+string exit_confirm_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
@@ -3924,10 +3946,15 @@ string goal_reminder_title
 string goal_vs_actual
 string goals_achieved
 string grant_permissions
+string hebrew
 string hide_bottom_view_on_scroll_behavior
 string hours
+string hours_format
+string hours_minutes_format
 string icon_content_description
 string item_view_role_description
+string language
+string less_than_minute
 string loading
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
@@ -3968,6 +3995,7 @@ string material_timepicker_pm
 string material_timepicker_select_time
 string material_timepicker_text_input_mode_description
 string minutes
+string minutes_format
 string mtrl_badge_numberless_content_description
 string mtrl_checkbox_button_icon_path_checked
 string mtrl_checkbox_button_icon_path_group_name
@@ -4030,6 +4058,8 @@ string mtrl_switch_track_decoration_path
 string mtrl_switch_track_path
 string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
+string notification_listener_msg
+string notification_listener_title
 string notifications_blocked
 string ok
 string password_toggle_content_description
@@ -4037,6 +4067,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string percentage_format
 string permission_required
 string reminder_time
 string reminder_time_hint
@@ -4045,6 +4076,7 @@ string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
 string searchview_navigation_content_description
+string select_language
 string settings
 string settings_saved
 string side_sheet_accessibility_pane_title
@@ -4055,12 +4087,14 @@ string silence_notifications
 string splash_subtitle
 string splash_title
 string start_session
+string starting
 string statistics
 string status_bar_notification_info_overflow
 string stop_session
 string streak
 string time_studied
 string today_progress
+string today_time
 string total_study_time
 string vibrate_only
 string weekly_overview
