@@ -3,25 +3,34 @@ package com.alex_lior_tomer.focusflip.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
- * Manager for user preferences using SharedPreferences.
- * Handles storing and retrieving user settings.
+ * SharedPreferences wrapper. Stores user settings and a small snapshot cache
+ * of stats so the UI can paint last-known values immediately on launch, then
+ * overwrite them when the async DB query returns.
  */
 public class PreferencesManager {
 
     private static final String PREFS_NAME = "focusflip_prefs";
 
-    // Keys
+    // Settings keys
     private static final String KEY_DAILY_GOAL_MINUTES = "daily_goal_minutes";
     private static final String KEY_REMINDER_HOUR = "reminder_hour";
     private static final String KEY_REMINDER_MINUTE = "reminder_minute";
     private static final String KEY_SILENCE_MODE = "silence_mode";
-    private static final String KEY_APP_LANGUAGE = "app_language";
-    private static final String KEY_FIRST_LAUNCH = "first_launch";
 
-    // Language constants
-    public static final String LANG_ENGLISH = "en";
-    public static final String LANG_HEBREW = "he";
+    // Stats cache keys (painted at first frame, refreshed from DB)
+    private static final String KEY_CACHE_TODAY_DATE = "cache_today_date";
+    private static final String KEY_CACHE_TODAY_MS = "cache_today_ms";
+    private static final String KEY_CACHE_TODAY_DISTRACTIONS = "cache_today_distractions";
+    private static final String KEY_CACHE_TOTAL_MS = "cache_total_ms";
+    private static final String KEY_CACHE_GOALS_ACHIEVED = "cache_goals_achieved";
+    private static final String KEY_CACHE_TOTAL_NOTIFS = "cache_total_notifs";
+    private static final String KEY_CACHE_TOTAL_DISTRACTIONS = "cache_total_distractions";
+    private static final String KEY_CACHE_AVG_SESSION_MS = "cache_avg_session_ms";
 
     // Silence mode constants
     public static final int SILENCE_ALL = 0;
@@ -77,37 +86,53 @@ public class PreferencesManager {
         preferences.edit().putInt(KEY_SILENCE_MODE, mode).apply();
     }
 
-    // Language
-
-    public String getAppLanguage() {
-        return preferences.getString(KEY_APP_LANGUAGE, LANG_ENGLISH);
-    }
-
-    public void setAppLanguage(String langCode) {
-        preferences.edit().putString(KEY_APP_LANGUAGE, langCode).apply();
-    }
-
-    // First Launch
-
-    public boolean isFirstLaunch() {
-        return preferences.getBoolean(KEY_FIRST_LAUNCH, true);
-    }
-
-    public void setFirstLaunchComplete() {
-        preferences.edit().putBoolean(KEY_FIRST_LAUNCH, false).apply();
-    }
-
-    /**
-     * Get the daily goal in milliseconds.
-     */
+    /** Daily goal expressed in milliseconds. */
     public long getDailyGoalMs() {
         return getDailyGoalMinutes() * 60 * 1000L;
     }
 
-    /**
-     * Clear all preferences.
-     */
-    public void clearAll() {
-        preferences.edit().clear().apply();
+    // Stats snapshot cache. Today's values are date-stamped so a stale day
+    // (e.g. user reopens the next morning) is ignored rather than painted.
+
+    private static String todayString() {
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date());
     }
+
+    public void cacheTodayStats(long todayMs, int todayDistractions) {
+        preferences.edit()
+                .putString(KEY_CACHE_TODAY_DATE, todayString())
+                .putLong(KEY_CACHE_TODAY_MS, todayMs)
+                .putInt(KEY_CACHE_TODAY_DISTRACTIONS, todayDistractions)
+                .apply();
+    }
+
+    /** Returns -1 when the cached value is from a previous day. */
+    public long getCachedTodayMs() {
+        if (!todayString().equals(preferences.getString(KEY_CACHE_TODAY_DATE, ""))) return -1;
+        return preferences.getLong(KEY_CACHE_TODAY_MS, -1);
+    }
+
+    /** Returns -1 when the cached value is from a previous day. */
+    public int getCachedTodayDistractions() {
+        if (!todayString().equals(preferences.getString(KEY_CACHE_TODAY_DATE, ""))) return -1;
+        return preferences.getInt(KEY_CACHE_TODAY_DISTRACTIONS, -1);
+    }
+
+    public void cacheLifetimeStats(long totalMs, int goalsAchieved,
+                                   int totalNotifs, int totalDistractions,
+                                   long avgSessionMs) {
+        preferences.edit()
+                .putLong(KEY_CACHE_TOTAL_MS, totalMs)
+                .putInt(KEY_CACHE_GOALS_ACHIEVED, goalsAchieved)
+                .putInt(KEY_CACHE_TOTAL_NOTIFS, totalNotifs)
+                .putInt(KEY_CACHE_TOTAL_DISTRACTIONS, totalDistractions)
+                .putLong(KEY_CACHE_AVG_SESSION_MS, avgSessionMs)
+                .apply();
+    }
+
+    public long getCachedTotalMs()           { return preferences.getLong(KEY_CACHE_TOTAL_MS, -1); }
+    public int  getCachedGoalsAchieved()     { return preferences.getInt(KEY_CACHE_GOALS_ACHIEVED, -1); }
+    public int  getCachedTotalNotifs()       { return preferences.getInt(KEY_CACHE_TOTAL_NOTIFS, -1); }
+    public int  getCachedTotalDistractions() { return preferences.getInt(KEY_CACHE_TOTAL_DISTRACTIONS, -1); }
+    public long getCachedAvgSessionMs()      { return preferences.getLong(KEY_CACHE_AVG_SESSION_MS, -1); }
 }

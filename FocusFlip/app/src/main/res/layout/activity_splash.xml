@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="FocusFlip"
+            android:text="@string/splash_title"
             android:textColor="@color/text_primary"
             android:textSize="38sp"
             android:fontFamily="sans-serif-light"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Smart Study Assistant"
+            android:text="@string/splash_subtitle"
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:letterSpacing="0.08" />

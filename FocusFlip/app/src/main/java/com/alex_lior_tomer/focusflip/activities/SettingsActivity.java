@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.alex_lior_tomer.focusflip.R;
 import com.alex_lior_tomer.focusflip.receivers.GoalCheckReceiver;
-import com.alex_lior_tomer.focusflip.utils.LocaleHelper;
 import com.alex_lior_tomer.focusflip.utils.PreferencesManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.slider.Slider;
@@ -29,23 +27,14 @@ public class SettingsActivity extends AppCompatActivity {
     private Slider goalSlider;
     private TextView goalValueText;
     private TextView reminderTimeText;
-    private RadioGroup silenceModeGroup;
     private RadioButton radioSilenceAll;
     private RadioButton radioSilenceNotifications;
     private RadioButton radioVibrateOnly;
-    private RadioGroup languageGroup;
-    private RadioButton radioEnglish;
-    private RadioButton radioHebrew;
     private MaterialButton saveButton;
 
     private PreferencesManager preferencesManager;
     private int selectedHour = 20;
     private int selectedMinute = 0;
-
-    @Override
-    protected void attachBaseContext(android.content.Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +62,9 @@ public class SettingsActivity extends AppCompatActivity {
         goalSlider = findViewById(R.id.goalSlider);
         goalValueText = findViewById(R.id.goalValueText);
         reminderTimeText = findViewById(R.id.reminderTimeText);
-        silenceModeGroup = findViewById(R.id.silenceModeGroup);
         radioSilenceAll = findViewById(R.id.radioSilenceAll);
         radioSilenceNotifications = findViewById(R.id.radioSilenceNotifications);
         radioVibrateOnly = findViewById(R.id.radioVibrateOnly);
-        languageGroup = findViewById(R.id.languageGroup);
-        radioEnglish = findViewById(R.id.radioEnglish);
-        radioHebrew = findViewById(R.id.radioHebrew);
         saveButton = findViewById(R.id.saveButton);
     }
 
@@ -106,14 +91,6 @@ public class SettingsActivity extends AppCompatActivity {
             case PreferencesManager.VIBRATE_ONLY:
                 radioVibrateOnly.setChecked(true);
                 break;
-        }
-
-        // Load language
-        String lang = preferencesManager.getAppLanguage();
-        if (lang.equals(PreferencesManager.LANG_HEBREW)) {
-            radioHebrew.setChecked(true);
-        } else {
-            radioEnglish.setChecked(true);
         }
     }
 
@@ -180,24 +157,10 @@ public class SettingsActivity extends AppCompatActivity {
         }
         preferencesManager.setSilenceMode(silenceMode);
 
-        // Save language
-        String oldLang = preferencesManager.getAppLanguage();
-        String newLang = radioHebrew.isChecked() ? PreferencesManager.LANG_HEBREW : PreferencesManager.LANG_ENGLISH;
-        preferencesManager.setAppLanguage(newLang);
-
-        // Schedule daily goal check alarm
         scheduleGoalCheckAlarm();
 
         Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
-
-        if (!oldLang.equals(newLang)) {
-            // Restart app to apply language change
-            Intent intent = new Intent(this, SplashActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        } else {
-            finish();
-        }
+        finish();
     }
 
     private void scheduleGoalCheckAlarm() {
@@ -237,7 +200,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

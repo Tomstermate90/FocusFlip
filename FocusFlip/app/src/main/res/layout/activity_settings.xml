@@ -136,7 +136,7 @@
                         android:id="@+id/reminderTimeText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20:00"
+                        android:text="@string/default_reminder_time"
                         android:textSize="24sp"
                         android:textColor="@color/primary"
                         android:fontFamily="sans-serif-medium" />
@@ -200,70 +200,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/vibrate_only"
-                            android:textSize="16sp"
-                            android:textColor="@color/text_primary"
-                            android:paddingVertical="8dp"
-                            android:buttonTint="@color/primary" />
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Language Section -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="@color/surface">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/language"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/select_language"
-                        android:textSize="14sp"
-                        android:textColor="@color/text_secondary" />
-
-                    <RadioGroup
-                        android:id="@+id/languageGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:id="@+id/radioEnglish"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/english"
-                            android:textSize="16sp"
-                            android:textColor="@color/text_primary"
-                            android:paddingVertical="8dp"
-                            android:buttonTint="@color/primary" />
-
-                        <RadioButton
-                            android:id="@+id/radioHebrew"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/hebrew"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary"
                             android:paddingVertical="8dp"

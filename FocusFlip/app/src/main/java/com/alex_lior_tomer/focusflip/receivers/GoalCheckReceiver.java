@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 import com.alex_lior_tomer.focusflip.R;
 import com.alex_lior_tomer.focusflip.activities.MainActivity;
 import com.alex_lior_tomer.focusflip.database.StudyDatabase;
-import com.alex_lior_tomer.focusflip.utils.LocaleHelper;
 import com.alex_lior_tomer.focusflip.utils.PreferencesManager;
 import com.alex_lior_tomer.focusflip.utils.TimeUtils;
 
@@ -20,8 +19,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Broadcast receiver triggered by AlarmManager at the user-defined reminder time.
- * Checks if the daily study goal has been achieved and sends a notification if not.
+ * Fires at the user's daily reminder time. Reads today's accumulated study
+ * time, then either congratulates the user or shows how much is left.
  */
 public class GoalCheckReceiver extends BroadcastReceiver {
 
@@ -37,35 +36,24 @@ public class GoalCheckReceiver extends BroadcastReceiver {
             return;
         }
 
-        Context localizedContext = LocaleHelper.onAttach(context);
+        Context appContext = context.getApplicationContext();
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            checkGoalAndNotify(localizedContext);
+            checkGoalAndNotify(appContext);
             executor.shutdown();
         });
     }
 
     private void checkGoalAndNotify(Context context) {
-        StudyDatabase database = StudyDatabase.getInstance(context);
-        PreferencesManager preferencesManager = new PreferencesManager(context);
-        
-        // Get today's total study time
-        long todayTotalTime = database.studySessionDao().getTodayTotalTime();
-        
-        // Get daily goal
-        int dailyGoalMinutes = preferencesManager.getDailyGoalMinutes();
-        long dailyGoalMs = dailyGoalMinutes * 60 * 1000L;
-        
-        // Create notification channel
+        long todayTotalTime = StudyDatabase.getInstance(context).studySessionDao().getTodayTotalTime();
+        long dailyGoalMs = new PreferencesManager(context).getDailyGoalMs();
+
         createNotificationChannel(context);
-        
+
         if (todayTotalTime >= dailyGoalMs) {
-            // Goal achieved - send congratulations notification
             sendGoalAchievedNotification(context);
         } else {
-            // Goal not achieved - send reminder notification
-            long remainingTime = dailyGoalMs - todayTotalTime;
-            sendGoalReminderNotification(context, remainingTime);
+            sendGoalReminderNotification(context, dailyGoalMs - todayTotalTime);
         }
     }
 

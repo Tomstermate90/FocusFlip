@@ -5,96 +5,103 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.alex_lior_tomer.focusflip.database.models.DailyStats;
-import com.alex_lior_tomer.focusflip.database.models.StudySession;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Repository class that abstracts access to the StudyDatabase.
- * Part of the MVC (Model) implementation.
+ * Wraps {@link StudySessionDao} with a background executor and posts results
+ * back to the main thread. The Model layer in the app's MVC split — Activities
+ * never touch the database directly.
+ *
+ * The DAO is acquired lazily on the executor so the very first repository
+ * call doesn't drag {@code getWritableDatabase()} onto the UI thread.
  */
 public class StudyRepository {
 
-    private final StudySessionDao studySessionDao;
+    private final Context appContext;
     private final ExecutorService executor;
     private final Handler mainHandler;
+
+    private volatile StudySessionDao studySessionDao;
 
     public interface RepositoryCallback<T> {
         void onComplete(T result);
     }
 
     public StudyRepository(Context context) {
-        StudyDatabase db = StudyDatabase.getInstance(context);
-        this.studySessionDao = db.studySessionDao();
+        this.appContext = context.getApplicationContext();
         this.executor = Executors.newSingleThreadExecutor();
         this.mainHandler = new Handler(Looper.getMainLooper());
     }
 
-    public void insertSession(StudySession session) {
-        executor.execute(() -> studySessionDao.insert(session));
+    private StudySessionDao dao() {
+        if (studySessionDao == null) {
+            studySessionDao = StudyDatabase.getInstance(appContext).studySessionDao();
+        }
+        return studySessionDao;
     }
 
     public void getTodayTotalTime(RepositoryCallback<Long> callback) {
         executor.execute(() -> {
-            long result = studySessionDao.getTodayTotalTime();
+            long result = dao().getTodayTotalTime();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getTodayDistractionsCount(RepositoryCallback<Integer> callback) {
         executor.execute(() -> {
-            int result = studySessionDao.getTodayDistractionsCount();
+            int result = dao().getTodayDistractionsCount();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getWeeklyStats(RepositoryCallback<List<DailyStats>> callback) {
         executor.execute(() -> {
-            List<DailyStats> result = studySessionDao.getWeeklyStats();
+            List<DailyStats> result = dao().getWeeklyStats();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getTotalStudyTime(RepositoryCallback<Long> callback) {
         executor.execute(() -> {
-            long result = studySessionDao.getTotalStudyTime();
+            long result = dao().getTotalStudyTime();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getTotalNotificationsBlocked(RepositoryCallback<Integer> callback) {
         executor.execute(() -> {
-            int result = studySessionDao.getTotalNotificationsBlocked();
+            int result = dao().getTotalNotificationsBlocked();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getTotalDistractions(RepositoryCallback<Integer> callback) {
         executor.execute(() -> {
-            int result = studySessionDao.getTotalDistractions();
+            int result = dao().getTotalDistractions();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getAverageSessionTime(RepositoryCallback<Long> callback) {
         executor.execute(() -> {
-            long result = studySessionDao.getAverageSessionTime();
+            long result = dao().getAverageSessionTime();
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getRecentStats(int days, RepositoryCallback<List<DailyStats>> callback) {
         executor.execute(() -> {
-            List<DailyStats> result = studySessionDao.getRecentStats(days);
+            List<DailyStats> result = dao().getRecentStats(days);
             mainHandler.post(() -> callback.onComplete(result));
         });
     }
 
     public void getGoalsAchievedCount(long dailyGoalMs, RepositoryCallback<Integer> callback) {
         executor.execute(() -> {
-            int result = studySessionDao.getGoalsAchievedCount(dailyGoalMs);
+            int result = dao().getGoalsAchievedCount(dailyGoalMs);
             mainHandler.post(() -> callback.onComplete(result));
         });
     }

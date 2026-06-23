@@ -4,10 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * SQLite database helper for FocusFlip.
- * Manages the creation and versioning of the database.
- */
+/** SQLite open helper. Holds the singleton DB and lazily exposes the DAO. */
 public class StudyDatabase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "focusflip.db";
@@ -62,16 +59,12 @@ public class StudyDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Handle database upgrades here
-        // For now, just recreate the table (in production, migrate data properly)
+        // Schema v1 ships in the v1.0 build; bumps will need real migrations.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SESSIONS);
         onCreate(db);
     }
 
-    /**
-     * Get the DAO for study sessions.
-     */
-    public StudySessionDao studySessionDao() {
+    public synchronized StudySessionDao studySessionDao() {
         if (studySessionDao == null) {
             studySessionDao = new StudySessionDao(getWritableDatabase());
         }

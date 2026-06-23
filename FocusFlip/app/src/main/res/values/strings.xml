@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FocusFlip</string>
-    <string name="app_name_hebrew">FocusFlip</string>
-    
+
     <!-- Splash Screen -->
     <string name="splash_title">FocusFlip</string>
     <string name="splash_subtitle">Smart Study Assistant</string>
@@ -35,10 +34,6 @@
     <string name="vibrate_only">Vibrate Only</string>
     <string name="save_settings">Save Settings</string>
     <string name="settings_saved">Settings saved successfully</string>
-    <string name="language">Language</string>
-    <string name="select_language">Select app language</string>
-    <string name="english">English</string>
-    <string name="hebrew">Hebrew</string>
 
     <!-- Statistics Screen -->
     <string name="statistics">Statistics</string>
@@ -75,7 +70,7 @@
     <string name="exit_confirm_title">Confirm Exit</string>
     <string name="exit_confirm_msg">Are you sure you want to exit? Active session will stop.</string>
     <string name="about_title">About FocusFlip</string>
-    <string name="about_message">Developers: Alex Politsan, Lior Tvito, Tomer Levi\nVersion: 1.0\nAPI Level: 30\nMobile App Development Workshop 2026</string>
+    <string name="about_message">Developers: Alex Politsan, Lior Cohen Twito, Tomer Levi\nVersion: 1.0\nAPI Level: 30\nMobile App Development Workshop 2026</string>
     <string name="dnd_permission_title">Do Not Disturb Permission</string>
     <string name="dnd_permission_msg">The app needs access to \'Do Not Disturb\' mode to silence notifications while studying.</string>
     <string name="notification_listener_title">Notification Access</string>
@@ -87,22 +82,10 @@
     <string name="chart_label_goal">Goal</string>
     <string name="chart_label_actual">Actual</string>
     <string name="default_timer">00:00</string>
+    <string name="default_reminder_time">20:00</string>
     <string name="default_zero">0</string>
     <string name="today_time">Today\'s Time</string>
     <string name="distractions">Distractions</string>
     <string name="percentage_format" translatable="false">%1$d%%</string>
     <string name="less_than_minute">Less than a minute</string>
-    <string name="alarm_permission_title">Schedule Exact Alarm Permission</string>
-    <string name="alarm_permission_msg">The app needs permission to schedule exact alarms to remind you about your study goal.</string>
-
-<!-- English strings.xml -->
-    <!-- <string name="about_message">Developers: Alex Polisan, Lior Tvito, Tomer Levi\nVersion: 1.0\nAPI
-        Level: 30\nMobile App Development Workshop 2026
-    </string> -->
-
-
-<!-- Hebrew strings.xml -->
-    <!-- <string name="about_message">מפתחים: תומר לוי, אלכס פוליסן, ליאור טוויטו\nגרסה: 1.0\nAPI Level:
-        30\nסדנה לפיתוח אפליקציות מובייל 2026
-    </string> -->
 </resources>

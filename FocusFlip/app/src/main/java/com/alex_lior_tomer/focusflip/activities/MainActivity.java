@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AnimationUtils;
@@ -27,18 +25,13 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.alex_lior_tomer.focusflip.R;
 import com.alex_lior_tomer.focusflip.database.StudyRepository;
 import com.alex_lior_tomer.focusflip.services.FocusService;
-import com.alex_lior_tomer.focusflip.utils.LocaleHelper;
 import com.alex_lior_tomer.focusflip.utils.PreferencesManager;
 import com.alex_lior_tomer.focusflip.utils.TimeUtils;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class MainActivity extends AppCompatActivity {
 
-    // UI Elements
     private TextView timerText;
     private TextView statusText;
     private ImageView statusIcon;
@@ -50,15 +43,12 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton startStopButton;
     private FloatingActionButton statsButton;
 
-    // Service
     private FocusService focusService;
     private boolean serviceBound = false;
 
-    // Data
     private PreferencesManager preferencesManager;
     private StudyRepository repository;
 
-    // Broadcast receiver for service updates
     private final BroadcastReceiver focusUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -66,19 +56,18 @@ public class MainActivity extends AppCompatActivity {
                 long sessionTime = intent.getLongExtra(FocusService.EXTRA_SESSION_TIME, 0);
                 boolean isFocusing = intent.getBooleanExtra(FocusService.EXTRA_IS_FOCUSING, false);
                 int distractions = intent.getIntExtra(FocusService.EXTRA_DISTRACTIONS, 0);
-                
                 updateUI(sessionTime, isFocusing, distractions);
             }
         }
     };
 
-    // Service connection
     private final ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             FocusService.FocusBinder binder = (FocusService.FocusBinder) service;
             focusService = binder.getService();
             serviceBound = true;
+            startStopButton.setEnabled(true);
             updateUIFromService();
         }
 
@@ -88,11 +77,6 @@ public class MainActivity extends AppCompatActivity {
             focusService = null;
         }
     };
-
-    @Override
-    protected void attachBaseContext(android.content.Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,24 +138,25 @@ public class MainActivity extends AppCompatActivity {
         Intent serviceIntent = new Intent(this, FocusService.class);
         serviceIntent.setAction(FocusService.ACTION_START);
         ContextCompat.startForegroundService(this, serviceIntent);
-        
-        // Bind to service
         bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
-        
-        // Update UI
-        updateButtonState(true);
+
+        // The button only flips to "Stop" once the service binds and reports
+        // its real state — see serviceConnection.onServiceConnected.
+        startStopButton.setEnabled(false);
         statusCard.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse));
     }
 
     private void stopFocusSession() {
+        // Stop is initiated locally and is synchronous from our side, so it
+        // is safe to update the button immediately rather than wait for a
+        // round-trip broadcast.
         if (serviceBound && focusService != null) {
             focusService.stopSession();
         }
-        
         Intent serviceIntent = new Intent(this, FocusService.class);
         serviceIntent.setAction(FocusService.ACTION_STOP);
         startService(serviceIntent);
-        
+
         updateButtonState(false);
         statusCard.clearAnimation();
     }
@@ -189,10 +174,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(long sessionTime, boolean isFocusing, int distractions) {
-        // Update timer
         timerText.setText(TimeUtils.formatDuration(sessionTime));
-        
-        // Update status
+
         if (isFocusing) {
             statusText.setText(R.string.focus_active);
             statusIcon.setImageResource(R.drawable.ic_focus);
@@ -204,11 +187,8 @@ public class MainActivity extends AppCompatActivity {
             statusIcon.setColorFilter(ContextCompat.getColor(this, R.color.focus_paused));
             statusCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.warning));
         }
-        
-        // Update distractions
+
         distractionsText.setText(String.valueOf(distractions));
-        
-        // Update progress
         updateGoalProgress(sessionTime);
     }
 
@@ -226,28 +206,46 @@ public class MainActivity extends AppCompatActivity {
     private void updateGoalProgress(long additionalTime) {
         repository.getTodayTotalTime(todayTime -> {
             long todayTotal = todayTime + additionalTime;
-            int dailyGoalMinutes = preferencesManager.getDailyGoalMinutes();
-            long dailyGoalMs = dailyGoalMinutes * 60 * 1000L;
-
-            int progress = dailyGoalMs > 0 ?
-                    (int) ((todayTotal * 100) / dailyGoalMs) : 0;
-            progress = Math.min(progress, 100);
-
-            goalProgress.setProgress(progress);
-            goalProgressText.setText(getString(R.string.percentage_format, progress));
+            paintGoalProgress(todayTotal);
             todayTimeText.setText(TimeUtils.formatDuration(todayTotal));
         });
     }
 
     private void loadTodayStats() {
+        // Paint last-known values immediately so the screen never flashes "0".
+        long cachedMs = preferencesManager.getCachedTodayMs();
+        int cachedDistractions = preferencesManager.getCachedTodayDistractions();
+        if (cachedMs >= 0) {
+            todayTimeText.setText(TimeUtils.formatDuration(cachedMs));
+            paintGoalProgress(cachedMs);
+        }
+        if (cachedDistractions >= 0) {
+            distractionsText.setText(String.valueOf(cachedDistractions));
+        }
+
+        // Refresh from DB. When the callback returns we overwrite the UI
+        // and update the cache for next time.
         repository.getTodayTotalTime(todayTotal -> {
             todayTimeText.setText(TimeUtils.formatDuration(todayTotal));
             updateGoalProgress(0);
+            int distractions = cachedDistractions >= 0 ? cachedDistractions : 0;
+            preferencesManager.cacheTodayStats(todayTotal, distractions);
         });
-        
+
         repository.getTodayDistractionsCount(todayDistractions -> {
             distractionsText.setText(String.valueOf(todayDistractions));
+            long ms = preferencesManager.getCachedTodayMs();
+            preferencesManager.cacheTodayStats(ms >= 0 ? ms : 0, todayDistractions);
         });
+    }
+
+    /** Paint the progress bar from a known total (no DB call). */
+    private void paintGoalProgress(long todayTotalMs) {
+        long dailyGoalMs = preferencesManager.getDailyGoalMs();
+        int progress = dailyGoalMs > 0 ? (int) ((todayTotalMs * 100) / dailyGoalMs) : 0;
+        progress = Math.min(progress, 100);
+        goalProgress.setProgress(progress);
+        goalProgressText.setText(getString(R.string.percentage_format, progress));
     }
 
     @Override
@@ -297,12 +295,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        
-        // Register broadcast receiver
+
         IntentFilter filter = new IntentFilter(FocusService.ACTION_FOCUS_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(focusUpdateReceiver, filter);
-        
-        // Bind to service if running
+
         if (FocusService.isRunning()) {
             Intent serviceIntent = new Intent(this, FocusService.class);
             bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
@@ -313,18 +309,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadTodayStats();
-        
+
         if (serviceBound && focusService != null) {
             updateUIFromService();
+        } else if (!startStopButton.isEnabled()) {
+            // Recover from a previous start attempt that never bound (rare).
+            startStopButton.setEnabled(true);
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        
         LocalBroadcastManager.getInstance(this).unregisterReceiver(focusUpdateReceiver);
-        
         if (serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;

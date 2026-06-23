@@ -1,8 +1,6 @@
 package com.alex_lior_tomer.focusflip.activities;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -13,7 +11,6 @@ import androidx.core.content.ContextCompat;
 import com.alex_lior_tomer.focusflip.R;
 import com.alex_lior_tomer.focusflip.database.StudyRepository;
 import com.alex_lior_tomer.focusflip.database.models.DailyStats;
-import com.alex_lior_tomer.focusflip.utils.LocaleHelper;
 import com.alex_lior_tomer.focusflip.utils.PreferencesManager;
 import com.alex_lior_tomer.focusflip.utils.TimeUtils;
 import com.github.mikephil.charting.charts.BarChart;
@@ -42,12 +39,6 @@ public class StatisticsActivity extends AppCompatActivity {
 
     private StudyRepository repository;
     private PreferencesManager preferencesManager;
-    private Handler uiHandler;
-
-    @Override
-    protected void attachBaseContext(android.content.Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +47,6 @@ public class StatisticsActivity extends AppCompatActivity {
 
         repository = new StudyRepository(this);
         preferencesManager = new PreferencesManager(this);
-        uiHandler = new Handler(Looper.getMainLooper());
 
         setupToolbar();
         initViews();
@@ -110,40 +100,81 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void loadStatistics() {
-        repository.getWeeklyStats(weeklyStats -> {
-            updateChart(weeklyStats);
-        });
+        paintFromCache();
+        refreshFromDb();
+        calculateStreak();
+    }
+
+    /** Paint last-known values immediately so tiles never flash "0" / "00:00". */
+    private void paintFromCache() {
+        long totalMs = preferencesManager.getCachedTotalMs();
+        if (totalMs >= 0) totalTimeText.setText(TimeUtils.formatDurationLong(totalMs, this));
+
+        int goals = preferencesManager.getCachedGoalsAchieved();
+        if (goals >= 0) goalsAchievedText.setText(String.valueOf(goals));
+
+        int notifs = preferencesManager.getCachedTotalNotifs();
+        if (notifs >= 0) notificationsBlockedText.setText(String.valueOf(notifs));
+
+        int distractions = preferencesManager.getCachedTotalDistractions();
+        if (distractions >= 0) distractionsText.setText(String.valueOf(distractions));
+
+        long avgMs = preferencesManager.getCachedAvgSessionMs();
+        if (avgMs >= 0) averageSessionText.setText(TimeUtils.formatDuration(avgMs));
+    }
+
+    /** Pull fresh values from the DB, paint, and write back to the cache. */
+    private void refreshFromDb() {
+        long dailyGoalMs = preferencesManager.getDailyGoalMs();
+        final long[] snap = {-1, -1, -1, -1};   // total, notifs, distractions, avg
+        final int[] goalsSnap = {-1};
+
+        repository.getWeeklyStats(this::updateChart);
 
         repository.getTotalStudyTime(totalTime -> {
             totalTimeText.setText(TimeUtils.formatDurationLong(totalTime, this));
+            snap[0] = totalTime;
+            maybeCacheLifetime(snap, goalsSnap);
         });
 
-        long dailyGoalMs = preferencesManager.getDailyGoalMinutes() * 60 * 1000L;
         repository.getGoalsAchievedCount(dailyGoalMs, goalsAchieved -> {
             goalsAchievedText.setText(String.valueOf(goalsAchieved));
+            goalsSnap[0] = goalsAchieved;
+            maybeCacheLifetime(snap, goalsSnap);
         });
 
         repository.getTotalNotificationsBlocked(notificationsBlocked -> {
             notificationsBlockedText.setText(String.valueOf(notificationsBlocked));
+            snap[1] = notificationsBlocked;
+            maybeCacheLifetime(snap, goalsSnap);
         });
 
         repository.getTotalDistractions(distractions -> {
             distractionsText.setText(String.valueOf(distractions));
+            snap[2] = distractions;
+            maybeCacheLifetime(snap, goalsSnap);
         });
 
         repository.getAverageSessionTime(averageSession -> {
             averageSessionText.setText(TimeUtils.formatDuration(averageSession));
+            snap[3] = averageSession;
+            maybeCacheLifetime(snap, goalsSnap);
         });
+    }
 
-        calculateStreak();
+    /** Write the snapshot once all five callbacks have reported in. */
+    private void maybeCacheLifetime(long[] snap, int[] goalsSnap) {
+        if (snap[0] < 0 || snap[1] < 0 || snap[2] < 0 || snap[3] < 0 || goalsSnap[0] < 0) return;
+        preferencesManager.cacheLifetimeStats(
+                snap[0], goalsSnap[0], (int) snap[1], (int) snap[2], snap[3]);
     }
 
     private void calculateStreak() {
         repository.getRecentStats(30, recentStats -> {
-            int dailyGoalMs = preferencesManager.getDailyGoalMinutes() * 60 * 1000;
+            long dailyGoalMs = preferencesManager.getDailyGoalMs();
             int streak = 0;
             Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
             for (int i = 0; i < 30; i++) {
                 String dateStr = dateFormat.format(calendar.getTime());
@@ -170,8 +201,7 @@ public class StatisticsActivity extends AppCompatActivity {
         List<String> labels = new ArrayList<>();
 
         int dailyGoalMinutes = preferencesManager.getDailyGoalMinutes();
-        String lang = preferencesManager.getAppLanguage();
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", new Locale(lang));
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, -6);
@@ -225,6 +255,7 @@ public class StatisticsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            getOnBackPressedDispatcher().onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -7,14 +7,12 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.Binder;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -29,46 +27,60 @@ import com.alex_lior_tomer.focusflip.R;
 import com.alex_lior_tomer.focusflip.activities.MainActivity;
 import com.alex_lior_tomer.focusflip.database.StudyDatabase;
 import com.alex_lior_tomer.focusflip.database.models.StudySession;
-import com.alex_lior_tomer.focusflip.receivers.ScreenStateReceiver;
-import com.alex_lior_tomer.focusflip.utils.LocaleHelper;
 import com.alex_lior_tomer.focusflip.utils.PreferencesManager;
 import com.alex_lior_tomer.focusflip.utils.TimeUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Foreground service that drives a focus session: listens to the accelerometer
+ * and proximity sensor to detect face-down (focus) vs face-up (distraction),
+ * runs the silence-mode policy, ticks a 1Hz timer, and persists the session
+ * to SQLite on stop.
+ */
 public class FocusService extends Service implements SensorEventListener {
 
-    // Actions
     public static final String ACTION_START = "com.alex_lior_tomer.focusflip.ACTION_START";
     public static final String ACTION_STOP = "com.alex_lior_tomer.focusflip.ACTION_STOP";
     public static final String ACTION_FOCUS_UPDATE = "com.alex_lior_tomer.focusflip.ACTION_FOCUS_UPDATE";
 
-    // Extras
     public static final String EXTRA_SESSION_TIME = "session_time";
     public static final String EXTRA_IS_FOCUSING = "is_focusing";
     public static final String EXTRA_DISTRACTIONS = "distractions";
 
-    // Notification
     private static final String CHANNEL_ID = "focus_channel";
     private static final int NOTIFICATION_ID = 1;
 
-    // Sensor threshold for face down detection
+    // Accelerometer Z < -8 m/s² means the device is roughly face-down on a flat
+    // surface. We rate-limit sensor handling to 2Hz to avoid jitter near the
+    // threshold flipping focus state on and off rapidly.
     private static final float FACE_DOWN_THRESHOLD = -8.0f;
-    private static final long SENSOR_UPDATE_INTERVAL = 500; // ms
+    private static final long SENSOR_UPDATE_INTERVAL = 500;
 
-    // Service state
+    // Cap a wake-lock at 4 hours. Long enough for any realistic single study
+    // block, short enough that a user who forgets to stop the session won't
+    // drain their battery overnight. The lock auto-releases on stop anyway;
+    // this is just the failsafe.
+    private static final long WAKE_LOCK_TIMEOUT_MS = 4L * 60 * 60 * 1000;
+
+    // The foreground notification only needs to redraw when the focus state
+    // flips or once every ~30s for the ticking timer. Rebuilding it every
+    // second (as the broadcast does) hammers the system NotificationManager
+    // for no UX benefit.
+    private static final long NOTIFICATION_REFRESH_MS = 30_000;
+
     private static boolean isRunning = false;
     private boolean isSessionActive = false;
     private boolean isFocusing = false;
 
-    // Timer
     private long sessionStartTime = 0;
     private long totalFocusTime = 0;
     private long focusStartTime = 0;
     private int distractionsCount = 0;
+    private long lastNotificationRefresh = 0;
+    private boolean lastNotificationFocusing = false;
 
-    // Sensors
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private Sensor proximitySensor;
@@ -76,27 +88,19 @@ public class FocusService extends Service implements SensorEventListener {
     private float lastProximity = -1;
     private long lastSensorUpdate = 0;
 
-    // Haptics
     private Vibrator vibrator;
     private AudioManager audioManager;
     private int previousRingerMode;
 
-    // Screen state
-    private ScreenStateReceiver screenStateReceiver;
-
-    // Handler for timer updates
     private final Handler timerHandler = new Handler(Looper.getMainLooper());
     private Runnable timerRunnable;
 
-    // Database
     private StudyDatabase database;
     private ExecutorService executor;
     private PreferencesManager preferencesManager;
 
-    // Wake lock
     private PowerManager.WakeLock wakeLock;
 
-    // Binder
     private final IBinder binder = new FocusBinder();
 
     public class FocusBinder extends Binder {
@@ -110,14 +114,9 @@ public class FocusService extends Service implements SensorEventListener {
     }
 
     @Override
-    protected void attachBaseContext(android.content.Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
-
-    @Override
     public void onCreate() {
         super.onCreate();
-        
+
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -127,26 +126,22 @@ public class FocusService extends Service implements SensorEventListener {
         executor = Executors.newSingleThreadExecutor();
         preferencesManager = new PreferencesManager(this);
 
-        // Acquire wake lock
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "FocusFlip::FocusWakeLock");
 
         createNotificationChannel();
-        setupScreenStateReceiver();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             String action = intent.getAction();
-            
             if (ACTION_START.equals(action)) {
                 startSession();
             } else if (ACTION_STOP.equals(action)) {
                 stopSession();
             }
         }
-        
         return START_STICKY;
     }
 
@@ -168,14 +163,6 @@ public class FocusService extends Service implements SensorEventListener {
         notificationManager.createNotificationChannel(channel);
     }
 
-    private void setupScreenStateReceiver() {
-        screenStateReceiver = new ScreenStateReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(screenStateReceiver, filter);
-    }
-
     public void startSession() {
         if (isSessionActive) return;
 
@@ -185,25 +172,17 @@ public class FocusService extends Service implements SensorEventListener {
         totalFocusTime = 0;
         distractionsCount = 0;
 
-        // Acquire wake lock
         if (!wakeLock.isHeld()) {
-            wakeLock.acquire(8 * 60 * 60 * 1000L); // 8 hours max
+            wakeLock.acquire(WAKE_LOCK_TIMEOUT_MS);
         }
 
-        // Register sensor listeners
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         if (proximitySensor != null) {
             sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
 
-        // Start foreground service
-        Notification notification = buildNotification(0, false);
-        startForeground(NOTIFICATION_ID, notification);
-
-        // Start timer
+        startForeground(NOTIFICATION_ID, buildNotification(0, false));
         startTimer();
-
-        // Apply silence mode
         applySilenceMode();
     }
 
@@ -213,29 +192,19 @@ public class FocusService extends Service implements SensorEventListener {
         isSessionActive = false;
         isRunning = false;
 
-        // Update focus time if currently focusing
         if (isFocusing && focusStartTime > 0) {
             totalFocusTime += System.currentTimeMillis() - focusStartTime;
         }
 
-        // Release wake lock
         if (wakeLock.isHeld()) {
             wakeLock.release();
         }
 
-        // Unregister sensor listener
         sensorManager.unregisterListener(this);
-
-        // Stop timer
         stopTimer();
-
-        // Restore audio mode
         restoreAudioMode();
-
-        // Save session to database
         saveSession();
 
-        // Stop foreground
         stopForeground(true);
         stopSelf();
     }
@@ -244,11 +213,16 @@ public class FocusService extends Service implements SensorEventListener {
         timerRunnable = new Runnable() {
             @Override
             public void run() {
-                if (isSessionActive) {
+                if (!isSessionActive) return;
+                broadcastUpdate();
+                long now = System.currentTimeMillis();
+                if (isFocusing != lastNotificationFocusing
+                        || now - lastNotificationRefresh >= NOTIFICATION_REFRESH_MS) {
                     updateNotification();
-                    broadcastUpdate();
-                    timerHandler.postDelayed(this, 1000);
+                    lastNotificationRefresh = now;
+                    lastNotificationFocusing = isFocusing;
                 }
+                timerHandler.postDelayed(this, 1000);
             }
         };
         timerHandler.post(timerRunnable);
@@ -271,53 +245,48 @@ public class FocusService extends Service implements SensorEventListener {
         lastSensorUpdate = currentTime;
 
         boolean wasFocusing = isFocusing;
-        
-        // Check if device is face down (z-axis pointing down) AND proximity sensor is NEAR
-        // Proximity sensor: 0 is near, higher is far. Some sensors return binary 0/5.
+
+        // Proximity reads 0 when near, up to maxRange when far. Some devices
+        // report a binary 0/5 instead of a gradient — treating "anything below
+        // max range" as near handles both styles. If the device has no
+        // proximity sensor at all we fall back to the accelerometer alone.
         boolean isNear = proximitySensor == null || lastProximity < proximitySensor.getMaximumRange();
         isFocusing = lastZ < FACE_DOWN_THRESHOLD && isNear;
 
         if (wasFocusing && !isFocusing) {
-            // Device was flipped up - distraction detected
             distractionsCount++;
             if (focusStartTime > 0) {
                 totalFocusTime += currentTime - focusStartTime;
             }
             focusStartTime = 0;
             vibrate(false);
+            refreshNotificationNow();
         } else if (!wasFocusing && isFocusing) {
-            // Device was flipped down - start focusing
             focusStartTime = currentTime;
             vibrate(true);
+            refreshNotificationNow();
         }
+    }
+
+    private void refreshNotificationNow() {
+        updateNotification();
+        lastNotificationRefresh = System.currentTimeMillis();
+        lastNotificationFocusing = isFocusing;
     }
 
     private void vibrate(boolean focusing) {
         if (vibrator == null || !vibrator.hasVibrator()) return;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (focusing) {
-                // Short single vibration
-                vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
-            } else {
-                // Double vibration
-                long[] pattern = {0, 200, 100, 200};
-                vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1));
-            }
+        if (focusing) {
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
-            if (focusing) {
-                vibrator.vibrate(200);
-            } else {
-                long[] pattern = {0, 200, 100, 200};
-                vibrator.vibrate(pattern, -1);
-            }
+            long[] pattern = {0, 200, 100, 200};
+            vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1));
         }
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Not needed
-    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
     private void applySilenceMode() {
         int silenceMode = preferencesManager.getSilenceMode();
@@ -356,9 +325,7 @@ public class FocusService extends Service implements SensorEventListener {
                 this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         String timeStr = TimeUtils.formatDuration(sessionTime);
-        int dailyGoal = preferencesManager.getDailyGoalMinutes();
-        String goalStr = TimeUtils.formatMinutes(dailyGoal);
-
+        String goalStr = TimeUtils.formatMinutes(preferencesManager.getDailyGoalMinutes());
         String text = getString(R.string.focus_notification_text, timeStr, goalStr);
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
@@ -373,9 +340,7 @@ public class FocusService extends Service implements SensorEventListener {
     }
 
     private void updateNotification() {
-        long sessionTime = getSessionTime();
-        Notification notification = buildNotification(sessionTime, isFocusing);
-        
+        Notification notification = buildNotification(getSessionTime(), isFocusing);
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
@@ -385,7 +350,6 @@ public class FocusService extends Service implements SensorEventListener {
         intent.putExtra(EXTRA_SESSION_TIME, getSessionTime());
         intent.putExtra(EXTRA_IS_FOCUSING, isFocusing);
         intent.putExtra(EXTRA_DISTRACTIONS, distractionsCount);
-        
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
@@ -397,17 +361,14 @@ public class FocusService extends Service implements SensorEventListener {
             session.focusDuration = totalFocusTime;
             session.distractionsCount = distractionsCount;
             session.notificationsBlocked = NotificationMonitorService.getBlockedCount();
-            
+
             database.studySessionDao().insert(session);
-            
-            // Reset notification counter
             NotificationMonitorService.resetBlockedCount();
         });
     }
 
     public long getSessionTime() {
         if (!isSessionActive) return 0;
-        
         long currentFocusTime = totalFocusTime;
         if (isFocusing && focusStartTime > 0) {
             currentFocusTime += System.currentTimeMillis() - focusStartTime;
@@ -415,32 +376,17 @@ public class FocusService extends Service implements SensorEventListener {
         return currentFocusTime;
     }
 
-    public boolean isSessionActive() {
-        return isSessionActive;
-    }
-
-    public boolean isFocusing() {
-        return isFocusing;
-    }
-
-    public int getDistractionsCount() {
-        return distractionsCount;
-    }
+    public boolean isSessionActive() { return isSessionActive; }
+    public boolean isFocusing()      { return isFocusing; }
+    public int getDistractionsCount(){ return distractionsCount; }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        
-        if (screenStateReceiver != null) {
-            unregisterReceiver(screenStateReceiver);
-        }
-        
         sensorManager.unregisterListener(this);
-        
         if (wakeLock.isHeld()) {
             wakeLock.release();
         }
-        
         executor.shutdown();
         isRunning = false;
     }

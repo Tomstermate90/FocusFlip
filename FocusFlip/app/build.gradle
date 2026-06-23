@@ -9,7 +9,6 @@ android {
     defaultConfig {
         applicationId "com.alex_lior_tomer.focusflip"
         minSdk 26
-        //noinspection ExpiredTargetSdkVersion
         targetSdk 30
         versionCode 1
         versionName "1.0"
